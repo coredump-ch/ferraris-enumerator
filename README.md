@@ -7,7 +7,7 @@ Counts people in the hacker space and publishes the result on a SpaceAPI server.
 You need to create a file called `config.h` in the same directory as `ferraris-counter.ino` containing the follwing information:
 
 | Field name     | Field type           | Meaning                                                  |
-----------------------------------------------------------------------------------------------------
+|----------------|----------------------|----------------------------------------------------------|
 | `kSSID`        | `char const * const` | Your networks **SSID**                                   |
 | `kPassword`    | `char const * const` | Your networks **Password**                               |
 | `kHost`        | `char const * const` | The **hostname** of the target SpaceAPI server           |
