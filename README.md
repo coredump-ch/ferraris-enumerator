@@ -20,4 +20,4 @@ For the sake of simplicity, you can of course define these variables using `auto
 
 ## Platform
 
-This code is designed to run on an ESP8266 deelopment board using 8 switches and a two-wire seven-segment display. The code was written using the ESP8266 platform plugin for Arduino.
+This code is designed to run on an ESP8266 sitting on a LoLin v3 development board using 8 switches and a two-wire seven-segment display. The code was written using the ESP8266 platform plugin for Arduino.
