@@ -33,8 +33,8 @@ POSSIBILITY OF SUCH DAMAGE.
 #include "config.h"
 
 #include "TM1637.h"
-#include <Ticker.h>
 #include <ESP8266WiFi.h>
+#include <Ticker.h>
 #include <WiFiClientSecure.h>
 
 #include <cstdint>
@@ -47,20 +47,17 @@ auto gClient = WiFiClientSecure{};
 
 std::uint8_t switches[] = {D2, D3, D4, D5, D6, D7, D9, D10};
 
-void setup()
-  {
+void setup() {
   WiFi.begin(kSSID, kPassword);
 
-  while(WiFi.status() != WL_CONNECTED)
-    {
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    }
+  }
 
-  for(auto const sw : switches)
-    {
+  for (auto const sw : switches) {
     pinMode(sw, INPUT_PULLUP);
     digitalWrite(sw, HIGH);
-    }
+  }
 
   gDisplay.power(true);
   gDisplay.setBrightness(6);
@@ -68,65 +65,51 @@ void setup()
   gUpdater.attach(0.05f, update);
 
   post();
-  }
+}
 
-void loop()
-  {
-  if(gShouldPost)
-    {
+void loop() {
+  if (gShouldPost) {
     gShouldPost = false;
     post();
-    }
   }
+}
 
-unsigned read_switches()
-  {
+unsigned read_switches() {
   auto people = 0u;
 
-  for(auto const sw : switches)
-    {
+  for (auto const sw : switches) {
     people <<= 1;
     people += !digitalRead(sw);
-    }
-
-  return people;
   }
 
-void update()
-  {
+  return people;
+}
+
+void update() {
   auto const people = read_switches();
   auto static it = 0;
 
-  if(gPeople != people)
-    {
+  if (gPeople != people) {
     gPeople = people;
 
-    if(gPeople)
-      {
+    if (gPeople) {
       gDisplay.writeInteger(gPeople);
-      }
-    else
-      {
+    } else {
       gDisplay.clear();
-      }
-
-    gShouldPost = true;
     }
 
+    gShouldPost = true;
   }
+}
 
-void post()
-  {
+void post() {
   auto value = String("value=") + gPeople;
-  auto request = String("PUT ") + kPath + " HTTP/1.1\r\n" +
-                 "Host: " + kHost + "\r\n" +
-                 "Content-type: application/x-www-form-urlencoded\r\n" +
-                 "Content-length: " + value.length() + "\r\n" +
-                 "\r\n" + value + "\r\n";
+  auto request =
+      String("PUT ") + kPath + " HTTP/1.1\r\n" + "Host: " + kHost + "\r\n" +
+      "Content-type: application/x-www-form-urlencoded\r\n" +
+      "Content-length: " + value.length() + "\r\n" + "\r\n" + value + "\r\n";
 
-  if(!gClient.connect(kHost, kPort) || !gClient.print(request))
-    {
+  if (!gClient.connect(kHost, kPort) || !gClient.print(request)) {
     gShouldPost = true;
-    }
   }
-
+}
