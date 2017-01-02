@@ -14,7 +14,6 @@ You need to create a file called `config.h` in the same directory as `ferraris-c
 | `kPort`        | `int const`          | The **port** your SpaceAPI server is listening on        |
 | `kPath`        | `char const * const` | The **path** for the PUT request on your SpaceAPI server |
 | `kField`       | `char const * const` | The **key** of the field transmitted in the PUT request  |
-| `kFingerprint` | `char const * const` | Your SpaceAPI servers **TLS fingerprint**                |
 
 For the sake of simplicity, you can of course define these variables using `auto constexpr`. You should make sure to **_NEVER_** add this configuration file to your repository since this would compromise your network security.
 
