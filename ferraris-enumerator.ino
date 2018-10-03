@@ -49,6 +49,10 @@ std::uint8_t switches[] = {D2, D3, D4, D5, D6, D7, D9, D10};
 
 void setup()
   {
+  gDisplay.power(true);
+  gDisplay.setBrightness(6);
+  gDisplay.writeInteger(9999);
+
   WiFi.begin(kSSID, kPassword);
 
   while(WiFi.status() != WL_CONNECTED)
@@ -62,8 +66,6 @@ void setup()
     digitalWrite(sw, HIGH);
     }
 
-  gDisplay.power(true);
-  gDisplay.setBrightness(6);
   gDisplay.clear();
   gUpdater.attach(0.05f, update);
 
