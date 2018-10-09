@@ -2,6 +2,7 @@
   tm1637.h - Library for 4-digit 7-segment display that uses the tm1637 chip.
   Created by William Moeur; 5/28/2015.
   https://github.com/moeur/Arduino_ESP8266
+  License: Public domain (https://github.com/moeur/Arduino_ESP8266/issues/3)
 *****************************************************************************/
 
 #ifndef TM1637_H
