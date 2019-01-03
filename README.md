@@ -20,3 +20,7 @@ For the sake of simplicity, you can of course define these variables using `auto
 ## Platform
 
 This code is designed to run on an ESP8266 sitting on a LoLin v3 development board using 8 switches and a two-wire seven-segment display. The code was written using the ESP8266 platform plugin for Arduino.
+
+## Flashing
+
+Follow [this guide](http://henrysbench.capnfatz.com/henrys-bench/arduino-projects-tips-and-more/arduino-esp8266-lolin-nodemcu-getting-started/) to set up Arduino Studio for your ESP8266. Then use it to flash the code.
